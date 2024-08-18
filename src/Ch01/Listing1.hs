@@ -1,7 +1,9 @@
-module Ch01.Listing1 where
-import System.Environment
+{-# LANGUAGE NoImplicitPrelude #-}
+module Main where
+
+import Relude
 
 main :: IO ()
 main = do
     args <- getArgs
-    putStrLn ("Hello, " ++ args !! 0)
+    putStrLn ("Hello, " ++ fromMaybe "Nameless One" (args !!? 0))
