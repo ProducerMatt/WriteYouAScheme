@@ -3,6 +3,9 @@ dist
 dist-*
 cabal.project.local
 cabal.project.local~
+*.o
+*.hi
+/main
 
 # nix
 result
