@@ -6,6 +6,7 @@ cabal.project.local~
 *.o
 *.hi
 /main
+/book-bins/*
 
 # nix
 result
