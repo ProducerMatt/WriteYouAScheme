@@ -96,4 +96,4 @@ executable haskell-template
   import:  shared
   main-is: Main.hs
 
-  -- other-modules: Ch01.Listing1
+-- other-modules: Ch01.Listing1
