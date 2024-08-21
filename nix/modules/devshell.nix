@@ -10,6 +10,7 @@
         config.treefmt.build.devShell # See ./nix/modules/formatter.nix
       ];
       packages = with pkgs; [
+        #haskellPackages.hoogle
         just
         nixd
       ];

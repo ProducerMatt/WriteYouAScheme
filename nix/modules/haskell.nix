@@ -20,8 +20,15 @@
         ];
       });
 
-      # The base package set (this value is the default)
-      # basePackages = pkgs.haskellPackages;
+      # # BUG: causes infinite recursion
+      # basePackages = pkgs.haskellPackages.override (old: {
+      #   overrides = lib.composeExtensions (old.overrides or (_: _: {})) (self: super:
+      #     {
+      #       ghc = super.ghc // { withPackages = super.ghc.withHoogle; };
+      #       ghcWithPackages = self.ghc.withPackages;
+      #     }
+      #   );
+      # });
 
       # Packages to add on top of `basePackages`
       packages = {
@@ -48,6 +55,14 @@
       # Development shell configuration
       devShell = {
         hlsCheck.enable = false;
+        hoogle = true;
+        benchmark = true;
+        mkShellArgs = {
+          shellHook = ''
+                # Re-generate .cabal files so HLS will work (per hie.yaml)
+                ${pkgs.findutils}/bin/find -name package.yaml -exec hpack {} \;
+              '';
+        };
       };
 
       # What should haskell-flake add to flake outputs?

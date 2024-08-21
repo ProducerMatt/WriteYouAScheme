@@ -4,7 +4,11 @@ default:
 # Run hoogle
 docs:
     echo http://127.0.0.1:8888
-    hoogle serve -p 8888 --local
+    hoogle serve -p 8888 --database=.local.hoo -v
+
+# update hoogle
+docs-build:
+    hoogle generate --database=.local.hoo --local --download
 
 # Run cabal repl
 repl *ARGS:
